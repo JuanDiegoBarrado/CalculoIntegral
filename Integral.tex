@@ -331,7 +331,7 @@ Completamente análoga a su homóloga anterior.
 \end{demo}
 
 \begin{theo}
-Sea $A \subset \mathbb{R}^n$ son equivalentes:  
+Sea $A \subset \mathbb{R}^n$. Son equivalentes:  
 \begin{enumerate}
 \item $A$ es medible.
 \item $\forall \varepsilon > 0,\ \exists G \supset A$ abierto $: \mu\left( G - A  \right) < \varepsilon$  
@@ -342,35 +342,46 @@ Sea $A \subset \mathbb{R}^n$ son equivalentes:
 \end{theo}
 \begin{demo}
 \begin{itemize}
-\item $1 \implies 2$: Si $A$ es acotado. Dado $\varepsilon > 0$, como $\mu\left( A \right) < +\infty$:
-$$\exists \{Q_k\}_{k=1}^{\infty} : A \subset \bigcup_{k=1}^\infty Q_k :$$  
-$$\sum_{k=1}^{\infty} v\left( Q_k \right) < \mu\left( A \right) + \varepsilon \implies G = \bigcup_{k=1}^{\infty} Q_k\; \land \; G\supset A$$ 
+\item $1 \implies 2$.
+Supongamos primero que $A$ es acotado. Dado $\varepsilon > 0$, como $\mu\left( A \right) < +\infty$ por ser acotado, 
+$\exists \{Q_k\}_{k=1}^{\infty} : A \subset \displaystyle \bigcup_{k=1}^\infty Q_k$ tal que
+$$\sum_{k=1}^{\infty} v\left( Q_k \right) < \mu\left( A \right) + \varepsilon$$
+Como el volumen no depende de que los rectángulos sean abiertos o cerrados, considero los $Q_k$ rectángulos abiertos. Así, si considero
+$$G = \bigcup_{k=1}^{\infty} Q_k\; \land \; G\supset A$$
+$G$ es un abierto\footnote{$\forall \{A_\alpha\}_{\alpha \in I}$ familia arbitraria de conjuntos abiertos en $E$ espacio métrico, $\displaystyle \bigcup_{\alpha \in I} A_\alpha$ es abierto en $E$}. Como $\mu (A) < + \infty$
 $$\mu\left( G \setminus A \right) = \mu\left( G \right) - \mu\left( A \right) \le \sum_{k=1}^{\infty} \mu\left( Q_k \right) - \mu\left( A \right) < \varepsilon $$ 
-Si $A$ no es acotado, definimos: 
-$$A_k = \{x \in A: k - 1 \le \vert \vert x \vert  \vert < k \} \text{, } A = \bigsqcup_{k=1}^{\infty}A_k$$ 
-Si fijamos $\varepsilon > 0$ y como $\mu\left( A \right) < +\infty \implies$
-$$\exists G_k \supset A_k \text{ abierto} : \mu\left( G_k \setminus A_k \right) < \frac{\varepsilon}{2^k}\; \land$$ 
-$$\land \;G = \bigcup_{k=1}^{\infty}G_k \text{ abierto, } G \supset A$$ 
-$$\mu\left( G \setminus A \right) = \mu\left( \left( \bigcup_{k \in \mathbb{N}}G_k  \right) \setminus A   \right) \le \mu\left( \left( \bigcup_{k \in \mathbb{N}} G_k \setminus A_k  \right)  \right) \le \sum_{k=1}^{\infty} \mu\left( G_k - A_k \right) < \sum_{k=1}^{\infty} \frac{\varepsilon}{2^k} = \varepsilon $$ 
+En general, si $A$ no es acotado, definimos: 
+$$A_k = \{x \in A: k - 1 \le \vert \vert x \vert  \vert < k \}$$
+[DIBUJO]
 
-\item $2 \implies 3$: $\forall k \in \mathbb{N},\ \exists A \subset G_k$ abierto: 
-$$\mu\left( G_k - A \right) < \frac{1}{k},\ D = \bigcap_{k=1}^{\infty}G_k \text{ es } G_{\delta}:$$ 
-$$D \supset A,\ N = D \setminus A: \mu\left( D \setminus A \right) \le \mu\left( G_k \setminus A \right) < \frac{1}{k} \implies \mu\left( N \right) = 0\ //\ A = D \setminus N$$ 
+Los conjuntos $A_k$ son coronas disjuntas 2 a 2 que descomponen $A$ como la unión disjunta de los $A_k$
+$$ A = \bigsqcup_{k=1}^{\infty}A_k$$ 
+Si fijamos $\varepsilon > 0$ y como $\mu\left( A \right) < +\infty$, se cumple que
+$$\exists G_k \supset A_k \text{ abierto} : \mu\left( G_k \setminus A_k \right) < \frac{\varepsilon}{2^k}$$
+Además, si consideramos $G$ como la unión de los $G_k$
+$$G = \bigcup_{k=1}^{\infty}G_k \text{ es un abierto : } G \supset A$$ 
+$$\mu\left( G \setminus A \right) = \mu\left( \left( \bigcup_{k \in \mathbb{N}}G_k  \right) \setminus A   \right) \le \mu\left(  \bigcup_{k \in \mathbb{N}} \left(G_k \setminus A_k  \right)  \right) \le \sum_{k=1}^{\infty} \mu\left( G_k - A_k \right) < \sum_{k=1}^{\infty} \frac{\varepsilon}{2^k} = \varepsilon $$ 
 
-\item $3 \implies 1$: Tenemos $A = D - N$ medible por ser diferencia de medibles.
+\item $2 \implies 3$: $\forall k \in \mathbb{N}$, consideramos $G_k \subset A$ abierto tal que $\mu\left( G_k - A \right) < \frac{1}{k}$. Definimos el conjunto
+$$D = \bigcap_{k=1}^{\infty}G_k \text{ es } G_{\delta}:D \supset A$$ 
+y observamos que $A = D \setminus (D \setminus A)$. Definimos entonces $N = D \setminus A$
+$$\mu\left( D \setminus A \right) \le \mu\left( G_k \setminus A \right) < \frac{1}{k} \implies \mu\left( N \right) = 0$$
 
-\item $1 \implies 5$: Sea $\varepsilon > 0$. Como:
-    $$A \text{ medible} \implies A^c \text{ medible} \implies \exists G \supset A^c \text{ abierto y } \mu\left( G - A^c \right) < \varepsilon$$ 
-Sea $F = G^c \text{ cerrado}$:
-$$\text{Como } A^c \subset G \implies F = G^c \subset \left( A^c \right)^c = A$$
-$$A \setminus F = \left( A^c \right)^c \cap F^c = G \cap \left( A^c \right)^c = G \setminus A^c$$
+\item $3 \implies 1$: Tenemos $A = D \setminus N$, o lo que equivale a que $A = D \cap N^c$. $D$ es medible por hipótesis, y $N^c$ es el complementario de un medible, que es medible\footnote{Teorema de Caratheodory}. Como las intersecciones de medibles sn medibles, $A$ es nedible.
+
+\item $1 \implies 5$: Sea $\varepsilon > 0$. Como $A$ es medible, entonces $A^c$ también lo es, y por el apartado $2$
+$$\exists G \supset A^c \text{ abierto : } \mu\left( G - A^c \right) < \varepsilon$$ 
+Sea $F = G^c \text{ cerrado}$. Como  $A^c \subset G \implies F = G^c \subset \left( A^c \right)^c = A$
+$$A \setminus F = \left( A^c \right)^c \setminus F  =\left( A^c \right)^c \cap F^c = G \cap \left( A^c \right)^c = G \setminus A^c$$
+Luego
 $$\mu\left( A \setminus F \right) = \mu\left( G \setminus A^c \right) < \varepsilon$$
 
 \item $5 \implies 4$: (Similar a $2 \implies 3$)\\
-$\forall k,\ \exists F_k \subset A : \mu\left( A \setminus F_k \right) < \frac{1}{k}$:
-$$C = \bigcup_{k = 1}^{\infty}F_k = F_{\sigma},\ C \subset A$$ 
+$\forall k \in \mathbb{N}$, consideramos $F_k \subset A : \mu\left( A \setminus F_k \right) < \frac{1}{k}$. Definimos el conjunto
+$$C = \bigcup_{k = 1}^{\infty}F_k  \text{ es } F_{\sigma} : \ C \subset A$$ 
+Y la demostración es análoga a la implicación $2 \implies 3$.
 
-\item $4 \implies 1$: $A = C \cup N$ medible, ya que es diferencia de medibles.
+\item $4 \implies 1$ \\ $A = C \cup N$ es medible, ya que es unión de medibles.
 \end{itemize}
 \end{demo}
 
